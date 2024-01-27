@@ -1,6 +1,6 @@
 import { StyleSheet, Text, TextInput, View } from "react-native";
 import { Pressable } from "react-native";
-import { useState, useEffect } from "react";
+import { useState} from "react";
 import { Link } from "expo-router";
 
 export default function Page() {
@@ -8,7 +8,7 @@ export default function Page() {
   const[noun, onChangeNoun] = useState('');
   const[event, onChangeEvent] = useState('');
 
-  const clearTexts = () => {setName(''), setNoun(''),setEvent('');};
+  const clearTexts = () => {onChangeName(''), onChangeNoun(''),onChangeEvent('');};
 
   return (
     <View style={styles.container}>
@@ -18,9 +18,9 @@ export default function Page() {
       </View>
 
       <View style={styles.instructions}>
-        <a href="https://www.madlibs.com">
+        <Link href="https://www.madlibs.com">
           <Text style={styles.texts}>How to play Mad Libs.</Text>
-        </a>
+        </Link>
         <Text style={styles.texts}>Hall Pass</Text>
       </View>
 
