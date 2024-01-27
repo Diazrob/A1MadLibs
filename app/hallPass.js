@@ -1,11 +1,22 @@
-import { StyleSheet, Text, Image, View } from "react-native";
-import { Link } from "expo-router";
+import { StyleSheet, Text, Image, View, Pressable } from "react-native";
+import { Link, useLocalSearchParams } from "expo-router";
+import { AntDesign } from '@expo/vector-icons';
 
 export default function page2() {
+  const params = useLocalSearchParams();
+  const cDate = new Date();
+  const formatDate = cDate.toLocaleDateString();
+
   return  (
     <View style={styles2.container}>
       <View style={styles2.nav}>
-        <Text>"Back"</Text>
+        <Pressable style={styles2.backButton}>
+           <Link
+           href={"/"}
+           >
+            <AntDesign name="arrowleft" size={36} color="black" />
+           </Link>
+        </Pressable>
       </View>
       {/* body View */}
         <View style={styles2.body}>
@@ -19,9 +30,9 @@ export default function page2() {
         <View style={styles2.rightView}>
              <Image style={{width: 150, height:150}} source={require('../assets/madLibs.png')}  />
           <View>
-            <Text style={styles2.rightText}>Date:</Text>
+            <Text style={styles2.rightText}>Date: {formatDate}</Text>
             <Text style={styles2.rightText}>
-              NAME is too cool for NOUN class. Instead, she/he will be attending the EVENT.
+              {params.name} is too cool for {params.noun} class. Instead, she/he will be attending the {params.event}.
             </Text>
             <View style={styles2.signBox}>
               <Text style={styles2.signText}>Signed:</Text>
@@ -44,6 +55,9 @@ nav: {
   width: "100%",
   backgroundColor:"lightblue",
   justifyContent: "center",
+},
+backButton: {
+  paddingLeft: 20,
 },
 body: {
   flex: 1,

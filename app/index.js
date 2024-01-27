@@ -1,14 +1,13 @@
 import { StyleSheet, Text, TextInput, View } from "react-native";
 import { Pressable } from "react-native";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "expo-router";
 
 export default function Page() {
-  const[name, setName] = useState('');
-  const[noun, setNoun] = useState('');
-  const[event, setEvent] = useState('');
+  const[name, onChangeName] = useState('');
+  const[noun, onChangeNoun] = useState('');
+  const[event, onChangeEvent] = useState('');
 
-  const makePass = () => {}
   const clearTexts = () => {setName(''), setNoun(''),setEvent('');};
 
   return (
@@ -28,7 +27,7 @@ export default function Page() {
            <TextInput
            style={styles.input}
            placeholder="Name"
-           onChangeText={setName}
+           onChangeText={onChangeName}
            value={name}
            ></TextInput>
         </View>
@@ -36,7 +35,7 @@ export default function Page() {
            <TextInput
            style={styles.input}
            placeholder="Noun"
-           onChangeText={setNoun}
+           onChangeText={onChangeNoun}
            value={noun}
            ></TextInput>
         </View>
@@ -44,7 +43,7 @@ export default function Page() {
            <TextInput
            style={styles.input}
            placeholder="An Event"
-           onChangeText={setEvent}
+           onChangeText={onChangeEvent}
            value={event}
            ></TextInput>
         </View>
@@ -54,7 +53,10 @@ export default function Page() {
       >
         <Link 
         style={styles.buttonText}
-        href={"/hallPass"}
+        href={{
+          pathname: "/hallPass",
+          params: {name,noun,event},
+        }}
         >Make my hall pass</Link>
       </Pressable>
       <Pressable
