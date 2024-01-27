@@ -18,7 +18,9 @@ export default function Page() {
       </View>
 
       <View style={styles.instructions}>
-        <Text style={styles.texts}>How to play Mad Libs.</Text>
+        <a href="https://www.madlibs.com">
+          <Text style={styles.texts}>How to play Mad Libs.</Text>
+        </a>
         <Text style={styles.texts}>Hall Pass</Text>
       </View>
 
